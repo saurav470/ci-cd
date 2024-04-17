@@ -40,7 +40,7 @@ jobs:
           vercel-org-id: ${{ secrets.ORG_ID}}
           vercel-project-id: ${{ secrets.PROJECT_ID}}
       - name: deployed url
-        run: echo "${{ steps.url }}"  
+        run: echo "${{ steps.url }}" | jq -c
       
 
   healthcheck:
