@@ -1,10 +1,13 @@
 import express from 'express';
 
+const app = express();
 const fn: () => void = () => {
   console.log('Hello World')
 }
 
 fn()
+
+
 
 
 const obj={
@@ -13,6 +16,15 @@ const obj={
   city:"india",
   city1:[1,2,3,3]
 }
+
+
+app.get('/',(req,res)=>{
+  res.send("hello")
+})
+
+app.listen(process.env.PORT,()=>{
+  console.log("server is running")
+})
 
 
 
