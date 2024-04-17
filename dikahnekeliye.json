@@ -1,0 +1,30 @@
+{
+  "key": "value",
+  "parent": {
+    "child": "value",
+    "child2": "value2"
+  },
+
+  
+  "array": [
+    1,
+    2,
+    3
+  ],
+
+
+  "array2": [
+    {
+      "key": "value",
+      "key2": "value2"
+    },
+    {
+      "key3": "value3"
+    }
+  ],
+
+  "server":"saurav \n wendding x"
+
+
+
+}

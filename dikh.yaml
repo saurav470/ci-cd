@@ -1,0 +1,28 @@
+key: value
+parent:
+  child: value
+  child2: value2
+
+
+#list
+array:
+  - value1
+  - value2
+  - value3
+
+#list of objects
+array:
+  - key: value
+    key2: value2
+  - key3: value3
+
+
+server: |
+  saurav 
+  wendding x
+
+  dc[pce
+  
+  ewvvew'k'
+  el
+

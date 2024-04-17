@@ -1,0 +1,38 @@
+name: My first Job
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: main
+      - name: Setup Node In Machine
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'v18.19.0'
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: remove unrequired files
+        run: |
+          rm -rf src
+          rm -rf tsconfig.json
+          rm -rf .gitignore
+          rm -rf .gtihub
+          rm -rf dikh.yaml
+          rm -rf dikahnekeliye.json
+      - name: production_modules
+        run: npm run prod_module
+      - name: check folder
+        run: tree -h -L 1
+      - name: check size
+        run: tree --du -afh dist/ | grep "\(files\|/\)$"
+      
+      
+
+        
+
+
+
