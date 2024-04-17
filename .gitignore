@@ -50,6 +50,7 @@ web_modules/
 
 # Optional npm cache directory
 .npm
+.vercel
 
 # Optional eslint cache
 .eslintcache
@@ -131,3 +132,4 @@ dist
 
 
 
+.vercel

@@ -3,6 +3,9 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      url: ${{ steps.url.outputs.preview-name  }}
+
     steps:
       - uses: actions/checkout@v2
         with:
@@ -29,8 +32,37 @@ jobs:
         run: tree -h -L 1
       - name: check size
         run: tree --du -ahF dist/ | grep "\(files\|/\)$"
+      - name: deploye to vercel
+        uses: amondnet/vercel-action@v20
+        id: url
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-args: '--prod'
+          vercel-org-id: ${{ secrets.ORG_ID}}
+          vercel-project-id: ${{ secrets.PROJECT_ID}}
+      # - name: deployed url
+      #   run: echo "${{ steps.url.outputs.preview-url }}"  
       
-      
+
+  healthcheck:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: health check
+        run: |
+          # Perform the curl request and store the status code in a variable
+          STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://${{needs.build.outputs.url}}.vercel.app )
+
+          # Check if the status code is 200 (OK)
+          if [ $STATUS_CODE -eq 200 ]; then
+            echo "Success: Status code is 200"
+            # Exit with success code
+            exit 0
+          else
+            echo "Failed: Status code is $STATUS_CODE"
+            # Exit with failure code
+            exit 1
+          fi
 
         
 
