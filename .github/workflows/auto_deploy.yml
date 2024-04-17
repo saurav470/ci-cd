@@ -28,7 +28,7 @@ jobs:
       - name: check folder
         run: tree -h -L 1
       - name: check size
-        run: tree --du -afh dist/ | grep "\(files\|/\)$"
+        run: tree --du -ahF dist/ | grep "\(files\|/\)$"
       
       
 
