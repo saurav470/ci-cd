@@ -41,7 +41,7 @@ jobs:
           vercel-project-id: ${{ secrets.PROJECT_ID}}
           vercel-args: '--prod'
       - name: deployed url
-        run: echo "Deployed to ${{ steps.url.outputs }}"
+        run: echo "Deployed to ${{ toJson(steps.url.outputs) }}"
       
 
   healthcheck:
