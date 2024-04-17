@@ -4,7 +4,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      url: ${{ steps.url.outputs.preview-name  }}
+      url: ${{ steps.url.outputs.preview-url  }}
 
     steps:
       - uses: actions/checkout@v2
@@ -50,7 +50,7 @@ jobs:
       - name: health check
         run: |
           # Perform the curl request and store the status code in a variable
-          STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://${{needs.build.outputs.url}}.vercel.app )
+          STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" ${{needs.build.outputs.url}} )
 
           # Check if the status code is 200 (OK)
           if [ $STATUS_CODE -eq 200 ]; then
